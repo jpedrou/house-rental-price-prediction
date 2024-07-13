@@ -162,7 +162,7 @@ def objective(trial, X_train, X_dev, y_train, y_dev):
 results = list()
 for name, value in sets.items():
     X_train, X_dev, y_train, y_dev = train_test_split(
-        X[value], y, test_size=0.1, random_state=0
+        X[value], y, test_size=0.2, random_state=0
     )
 
     study = optuna.create_study(

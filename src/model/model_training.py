@@ -32,7 +32,7 @@ original_features = list(X.iloc[:, :11].columns)
 # ===============================================================
 
 X_train, X_dev, y_train, y_dev = train_test_split(
-    X[original_features], y, test_size=0.05, random_state=0
+    X[original_features], y, test_size=0.2, random_state=0
 )
 
 
