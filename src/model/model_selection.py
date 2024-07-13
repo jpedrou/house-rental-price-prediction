@@ -1,8 +1,8 @@
 # =============================================================== #
 #                                                                 #                                              
 #                                                                 #
-#                 Machine Learning Model for predict              #
-#                 predict the rent value of a house               #
+#                     Machine Learning Model to                   #
+#               predict the rental value of a house               #
 #                                                                 #
 #                                                                 #
 # =============================================================== #
@@ -149,7 +149,7 @@ def objective(trial, X_train, X_dev, y_train, y_dev):
         ),
     }
 
-    model = CatBoostRegressor(**params, verbose=False)
+    model = CatBoostRegressor(**params, verbose=False, random_state=0)
     model.fit(X_train, y_train)
 
     y_dev_pred = model.predict(X_dev)
@@ -174,9 +174,15 @@ for name, value in sets.items():
     def objective_with_data(trial):
         return objective(trial, X_train, X_dev, y_train, y_dev)
 
-    study.optimize(objective_with_data, n_trials=200)
+    study.optimize(objective_with_data, n_trials=250)
     results.append(
         {"set": name, "best_rmse_value": study.best_value, "best_params": study.best_params}
     )
 
-results_df = pd.DataFrame(results)
+
+# ===============================================================
+# Export Model Comparison
+# ===============================================================
+
+results_df = pd.DataFrame(results).sort_values(by=['best_rmse_value'] ,ascending=True)
+results_df.to_csv('../../reports/model_comparison.csv', index = None)
