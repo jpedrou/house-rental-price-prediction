@@ -82,6 +82,7 @@ dependencies:
       - blinker==1.8.2
       - cachelib==0.9.0
       - cachetools==5.3.3
+      - catboost==1.2.3
       - certifi==2024.7.4
       - cffi==1.16.0
       - charset-normalizer==3.3.2
@@ -151,7 +152,7 @@ dependencies:
       - methodtools==0.4.7
       - more-itertools==10.3.0
       - multidict==6.0.5
-      - numpy==2.0.0
+      - numpy==1.26.4
       - opentelemetry-api==1.25.0
       - opentelemetry-exporter-otlp==1.25.0
       - opentelemetry-exporter-otlp-proto-common==1.25.0
@@ -160,11 +161,13 @@ dependencies:
       - opentelemetry-proto==1.25.0
       - opentelemetry-sdk==1.25.0
       - opentelemetry-semantic-conventions==0.46b0
+      - optuna==3.6.1
       - ordered-set==4.1.0
       - pandas==2.2.2
       - pathspec==0.12.1
       - pendulum==3.0.0
       - pillow==10.4.0
+      - plotly==5.22.0
       - pluggy==1.5.0
       - prison==0.2.1
       - protobuf==4.25.3
@@ -175,6 +178,7 @@ dependencies:
       - pyparsing==3.1.2
       - python-daemon==3.0.1
       - python-dateutil==2.9.0.post0
+      - python-graphviz==0.20.3
       - python-nvd3==0.16.0
       - python-slugify==8.0.4
       - pytz==2024.1
@@ -205,6 +209,7 @@ dependencies:
       - time-machine==2.14.2
       - toml==0.10.2
       - toolz==0.12.1
+      - tqdm==4.66.4
       - tzdata==2024.1
       - uc-micro-py==1.0.3
       - unicodecsv==0.14.1
