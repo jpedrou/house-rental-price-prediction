@@ -1,2 +1,2 @@
 # House Rental Price Prediction
-<img src='https://i.pinimg.com/originals/27/02/48/2702489cfb0b9f8aec2f827ae461f528.jpg'>
+<img src='reports/Default_Modern_house_digital_art_a_sleek_and_minimalist_abode_3.jpg'>
