@@ -1,7 +1,5 @@
-<center>
+<p align = 'center'>
 <img width=150 src='reports/house_price.png'>
-<br><br>
+</p>
 
-# House Rental Price Prediction
-</center>
-
+<h1 align= 'center'>House Rental Price Prediciton</h1>
