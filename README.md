@@ -1,5 +1,5 @@
 <p align = 'center'>
-<img width=100 src='reports/house.png'>
+<img width=100 src='reports/giphy.gif'>
 </p>
 
 <h1 align= 'center'>House Rental Price Prediction</h1>
