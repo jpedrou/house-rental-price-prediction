@@ -32,7 +32,7 @@ with open("style.css") as f:
 
 st.image(image="../reports/house_price.png", width=200)
 st.sidebar.subheader("Choose an option to make a prediction.")
-st.title("House Rental Price Prediciton App")
+st.title("House Rental Price Prediction App")
 st.markdown("This app was built to make predictions of house rental prices. ")
 
 
