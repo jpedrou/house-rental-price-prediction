@@ -11,4 +11,4 @@ This project utilizes Airflow's queuing system and an SQLite database to predict
 - **Deployment Pipeline**: Orchestrating pipelines with Apache Airflow to ensure efficient workflow management.
 - **Minimal Interface**: Interface for user inputs made with Streamlit.
 
-<h2>Running</h2>
+<!-- <h2>Running</h2> -->
