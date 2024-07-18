@@ -7,3 +7,20 @@
     background-color: rgb(238, 238, 238);
     border-radius: 10px;
 }
+
+
+#no-predictions-available{
+    margin-top: 50px;
+    color: rgb(102, 102, 102);
+    font-size: 35px;
+    font-style: italic;
+    font-weight: 600;
+}
+
+#please-click-on-the-button-predict-to-see-the-results{
+    font-size: 20px;
+    font-weight: 500;
+    font-style: italic;
+    color: #979797;
+    margin-top: -14px;
+}

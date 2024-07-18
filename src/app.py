@@ -6,10 +6,10 @@ import requests
 
 def get_usd_to_brl_rate():
     try:
-        url = 'https://api.exchangerate-api.com/v4/latest/USD'
+        url = "https://api.exchangerate-api.com/v4/latest/USD"
         response = requests.get(url)
         data = response.json()
-        return data['rates']['BRL']
+        return data["rates"]["BRL"]
     except Exception:
         return 5
 
@@ -30,10 +30,12 @@ st.set_page_config(layout="centered")
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-st.image(image="../reports/house_price.png", width=200)
+st.image(image="../reports/house.png", width=100)
 st.sidebar.subheader("Choose an option to make a prediction.")
 st.title("House Rental Price Prediction App")
-st.markdown("This app was built to make predictions of house rental prices. ")
+st.markdown(
+    "This app was built to make predictions of house rental prices. For more details, please access the project repository by clicking [here](https://github.com/jpedrou). "
+)
 
 
 city = st.sidebar.selectbox(
@@ -50,7 +52,7 @@ city = st.sidebar.selectbox(
 st.sidebar.markdown("")
 
 state = st.sidebar.selectbox(
-    label="Select a city",
+    label="Select a state",
     options=(
         "SP",
         "RJ",
@@ -147,7 +149,11 @@ match state:
 # Predictions
 # ===============================================================
 
-if predict_btn:
+if not predict_btn:
+    st.title("No Predictions Available")
+    st.subheader("Please, click on the button Predict to see the results!")
+
+else:
     pred_df = pd.DataFrame()
 
     pred_df["cidade"] = [city]
