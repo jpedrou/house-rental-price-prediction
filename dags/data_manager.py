@@ -23,11 +23,11 @@ from airflow.operators.python import PythonOperator
 # =================================================
 
 DEFAULT_ARGS = {"owner": "airflow"}
-ROOT_PATH = "../data/database"
-PROCESSED_TMP_DF_PATH = "../data/processed/"
+ROOT_PATH = "/home/joao/Documents/IF/api_streamlit/data/database"
+PROCESSED_TMP_DF_PATH = "/home/joao/Documents/IF/api_streamlit/data/processed/"
 PRODUCTION_PATH = ROOT_PATH + "/imoveis_prod.db"
 DATAWHAREHOUSE_PATH = ROOT_PATH + "imoveis_dw.db"
-TMP_DF_PATH = "../data/raw/original_dataset.csv"
+TMP_DF_PATH = "/home/joao/Documents/IF/api_streamlit/data/raw/original_dataset.csv"
 
 
 # =================================================
@@ -39,6 +39,7 @@ dag = DAG(
     default_args=DEFAULT_ARGS,
     schedule_interval="@daily",
     start_date=days_ago(2),
+    catchup=False
 )
 
 
@@ -67,7 +68,6 @@ def extract():
     INNER JOIN ESTADO
     ON CIDADE.CODIGO_ESTADO = ESTADO.CODIGO;
     """
-
     df = pd.read_sql_query(query, connection)
     df.to_csv(TMP_DF_PATH, index=None)
 
