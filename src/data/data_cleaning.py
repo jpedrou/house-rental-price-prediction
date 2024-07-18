@@ -164,6 +164,10 @@ df_with_no_outliers = changed_df2.copy()
 
 df_with_no_outliers[num_features].describe()
 
+df_with_no_outliers["num_andares"] = np.where(
+    df_with_no_outliers["num_andares"] > 32, np.nan, df_with_no_outliers["num_andares"]
+)
+
 df_with_no_outliers["area"] = np.where(
     df_with_no_outliers["area"] > 2000, np.nan, df_with_no_outliers["area"]
 )
@@ -196,11 +200,15 @@ nan_index = df_with_no_outliers[df_with_no_outliers.isnull().any(axis=1)].index
 # KNN Imputation
 imputer = KNNImputer(n_neighbors=10, weights="distance")
 
-df_with_no_outliers[["area", "valor_aluguel", "valor_condominio", "valor_iptu"]] = (
-    imputer.fit_transform(
-        df_with_no_outliers[["area", "valor_aluguel", "valor_condominio", "valor_iptu"]]
-    )
+df_with_no_outliers[
+    ["area", "valor_aluguel", "valor_condominio", "valor_iptu", "num_andares"]
+] = imputer.fit_transform(
+    df_with_no_outliers[
+        ["area", "valor_aluguel", "valor_condominio", "valor_iptu", "num_andares"]
+    ]
 )
+
+df_with_no_outliers['num_andares'] = df_with_no_outliers['num_andares'].astype(int)
 
 df_with_no_outliers.loc[nan_index]
 
@@ -223,5 +231,6 @@ for feature in num_features:
 # ============================================================
 # Export new dataset
 # ============================================================
+df_with_no_outliers.to_csv("../../data/processed/df_with_no_outliers.csv", index=None)
 
-df_with_no_outliers.to_csv('../../data/processed/df_with_no_outliers.csv', index = None)
+

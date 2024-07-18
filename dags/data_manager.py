@@ -39,7 +39,7 @@ dag = DAG(
     default_args=DEFAULT_ARGS,
     schedule_interval="@daily",
     start_date=days_ago(2),
-    catchup=False
+    catchup=False,
 )
 
 
@@ -129,6 +129,8 @@ def handle_outliers():
         tmp["area"].isna(), np.nan, tmp["valor_condominio"]
     )
 
+    tmp["num_andares"] = np.where(tmp["area"].isna(), np.nan, tmp["num_andares"])
+
     tmp["valor_iptu"] = np.where(tmp["area"].isna(), np.nan, tmp["valor_iptu"])
 
     tmp["valor_aluguel"] = np.where(
@@ -139,24 +141,40 @@ def handle_outliers():
 
     tmp["valor_iptu"] = np.where(tmp["valor_iptu"] > 30000, np.nan, tmp["valor_iptu"])
 
+    tmp["num_andares"] = np.where(tmp["num_andares"] > 32, np.nan, tmp["num_andares"])
+
     imputer = KNNImputer(n_neighbors=10, weights="distance")
 
-    tmp[["area", "valor_aluguel", "valor_condominio", "valor_iptu"]] = (
+    tmp[["area", "valor_aluguel", "valor_condominio", "valor_iptu", "num_andares"]] = (
         imputer.fit_transform(
-            tmp[["area", "valor_aluguel", "valor_condominio", "valor_iptu"]]
+            tmp[
+                [
+                    "area",
+                    "valor_aluguel",
+                    "valor_condominio",
+                    "valor_iptu",
+                    "num_andares",
+                ]
+            ]
         )
     )
 
-    tmp.to_csv(PROCESSED_TMP_DF_PATH + 'no_outliers_df.csv', index = None)
+    tmp["num_andares"] = tmp["num_andares"].astype(int)
+
+    tmp.to_csv(PROCESSED_TMP_DF_PATH + "no_outliers_df.csv", index=None)
 
 
 # =================================================
 # Dags Operations
 # =================================================
 
-extract_task = PythonOperator(task_id = 'extract', python_callable=extract, dag = dag)
-preprocess_task = PythonOperator(task_id = 'preprocess', python_callable=preprocess, dag = dag)
-handle_outliers_task = PythonOperator(task_id = 'handle_outliers', python_callable=handle_outliers, dag = dag)
+extract_task = PythonOperator(task_id="extract", python_callable=extract, dag=dag)
+preprocess_task = PythonOperator(
+    task_id="preprocess", python_callable=preprocess, dag=dag
+)
+handle_outliers_task = PythonOperator(
+    task_id="handle_outliers", python_callable=handle_outliers, dag=dag
+)
 
 
 # ETL

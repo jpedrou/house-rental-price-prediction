@@ -17,9 +17,9 @@ from sklearn.impute import KNNImputer
 from sklearn.metrics import r2_score, mean_squared_error
 
 
-plt.rcParams['figure.figsize'] = (15, 10)
-plt.rcParams['figure.dpi'] = 100
-plt.style.use('fivethirtyeight')
+plt.rcParams["figure.figsize"] = (15, 10)
+plt.rcParams["figure.dpi"] = 100
+plt.style.use("fivethirtyeight")
 
 # ===============================================================
 # Load Test Dataset
@@ -95,11 +95,23 @@ def handle_outliers(df):
 
     tmp["valor_iptu"] = np.where(tmp["valor_iptu"] > 30000, np.nan, tmp["valor_iptu"])
 
+    tmp["num_andares"] = tmp["num_andares"].astype(int)
+
+    tmp["num_andares"] = np.where(tmp["num_andares"] > 32, np.nan, tmp["num_andares"])
+
     imputer = KNNImputer(n_neighbors=10, weights="distance")
 
-    tmp[["area", "valor_aluguel", "valor_condominio", "valor_iptu"]] = (
+    tmp[["area", "valor_aluguel", "valor_condominio", "valor_iptu", "num_andares"]] = (
         imputer.fit_transform(
-            tmp[["area", "valor_aluguel", "valor_condominio", "valor_iptu"]]
+            tmp[
+                [
+                    "area",
+                    "valor_aluguel",
+                    "valor_condominio",
+                    "valor_iptu",
+                    "num_andares",
+                ]
+            ]
         )
     )
 
@@ -115,7 +127,6 @@ test_set = handle_outliers(test_set)
 
 X_test = test_set.drop(["valor_aluguel"], axis=1)
 y_test = test_set["valor_aluguel"]
-
 
 # ===============================================================
 # Making Predictions
@@ -134,7 +145,7 @@ print("RMSE:", np.sqrt(mean_squared_error(y_test, y_test_pred)))
 # Plotting Predictions
 # ===============================================================
 
-plt.hist(y_test, label='Real')
-plt.hist(y_test_pred, label='Predictions')
+plt.hist(y_test, label="Real")
+plt.hist(y_test_pred, label="Predictions")
 plt.legend()
 plt.show()
