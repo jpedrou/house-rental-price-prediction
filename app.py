@@ -30,7 +30,7 @@ st.set_page_config(layout="centered")
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-st.image(image="../reports/giphy.gif", width=100)
+st.image(image="reports/giphy.gif", width=100)
 st.sidebar.subheader("Choose an option to make a prediction.")
 st.title("House Rental Price Prediction App")
 st.markdown(
