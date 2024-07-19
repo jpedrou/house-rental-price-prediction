@@ -2,6 +2,7 @@ import streamlit as st
 import joblib as jb
 import pandas as pd
 import requests
+import base64
 
  
 def get_usd_to_brl_rate():
@@ -30,7 +31,16 @@ st.set_page_config(layout="centered")
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-st.image(image="reports/giphy.gif", width=100)
+file_ = open("/home/joao/Documents/IF/api_streamlit/reports/giphy.gif", "rb")
+contents = file_.read()
+data_url = base64.b64encode(contents).decode("utf-8")
+file_.close()
+
+st.markdown(
+    f'<img width=100 src="data:image/gif;base64,{data_url}" alt="cat gif">',
+    unsafe_allow_html=True,
+)
+
 st.sidebar.subheader("Choose an option to make a prediction.")
 st.title("House Rental Price Prediction App")
 st.markdown(
