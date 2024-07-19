@@ -18,7 +18,7 @@ def get_usd_to_brl_rate():
 # Model Load
 # ===============================================================
 
-model = jb.load("/home/joao/Documents/IF/api_streamlit/src/model/model.pkl")
+model = jb.load("model/model.pkl")
 
 # ===============================================================
 # Streamlit Interface
