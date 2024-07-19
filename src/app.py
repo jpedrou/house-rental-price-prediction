@@ -3,7 +3,7 @@ import joblib as jb
 import pandas as pd
 import requests
 
-
+ 
 def get_usd_to_brl_rate():
     try:
         url = "https://api.exchangerate-api.com/v4/latest/USD"
