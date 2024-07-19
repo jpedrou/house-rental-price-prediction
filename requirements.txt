@@ -1,6 +1,0 @@
-pandas==2.2.2
-streamlit==1.36.0
-joblib==1.4.2
-requests==2.32.3
-numpy==1.26.4
-catboost==1.2.3
