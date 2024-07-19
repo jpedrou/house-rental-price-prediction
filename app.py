@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 import base64
 
- 
+
 def get_usd_to_brl_rate():
     try:
         url = "https://api.exchangerate-api.com/v4/latest/USD"
@@ -91,31 +91,31 @@ animals = st.sidebar.selectbox(
 
 st.sidebar.markdown("")
 
-area = st.sidebar.number_input("Area")
+area = st.sidebar.number_input("Area", min_value=50, value=50)
 
 st.sidebar.markdown("")
 
-rooms = st.sidebar.number_input("Rooms Number", step=1)
+rooms = st.sidebar.number_input("Rooms Number", step=1, min_value=1, value=1)
 
 st.sidebar.markdown("")
 
-bathrooms = st.sidebar.number_input("Bathrooms Number", step=1)
+bathrooms = st.sidebar.number_input("Bathrooms Number", step=1, min_value=1, value=1)
 
 st.sidebar.markdown("")
 
-floors = st.sidebar.number_input("Floors Number", step=1)
+floors = st.sidebar.number_input("Floors Number", step=1, min_value=1, value=1)
 
 st.sidebar.markdown("")
 
-condominium = st.sidebar.number_input("Condominium Value")
+condominium = st.sidebar.number_input("Condominium Value", min_value=50, value=50)
 
 st.sidebar.markdown("")
 
-iptu = st.sidebar.number_input("IPTU Value")
+iptu = st.sidebar.number_input("IPTU Value", min_value=100, value=100)
 
 st.sidebar.markdown("")
 
-insurance = st.sidebar.number_input("Insurance Value")
+insurance = st.sidebar.number_input("Insurance Value", min_value=10, value=10)
 
 st.sidebar.markdown("")
 
