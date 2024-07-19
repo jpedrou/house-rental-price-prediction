@@ -68,4 +68,4 @@ dev_rmse = np.sqrt(mean_squared_error(y_dev, y_dev_pred))
 # Export Model
 # ==============================================================
 
-jb.dump(model, '../model/model.pkl')
+jb.dump(model, 'model.pkl')
