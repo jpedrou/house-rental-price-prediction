@@ -1,5 +1,5 @@
 <p align = 'center'>
-<img width=100 src='reports/giphy.gif'>
+<img width=150 src='reports/A modern house in a black background in a high quality pixel art style.png'>
 </p>
 
 <h1 align= 'center'>House Rental Price Prediction</h1>

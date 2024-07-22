@@ -31,15 +31,7 @@ st.set_page_config(layout="centered")
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-file_ = open("reports/giphy.gif", "rb")
-contents = file_.read()
-data_url = base64.b64encode(contents).decode("utf-8")
-file_.close()
-
-st.markdown(
-    f'<img width=100 src="data:image/gif;base64,{data_url}" alt="cat gif">',
-    unsafe_allow_html=True,
-)
+st.image(image='reports/A modern house in a black background in a high quality pixel art style.png', width=200)
 
 st.sidebar.subheader("Choose an option to make a prediction.")
 st.title("House Rental Price Prediction App")
